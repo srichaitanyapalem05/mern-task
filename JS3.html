@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS-TASK3</title>
+    <style>
+        body{
+            display: flex;
+            justify-content: center;
+            margin-top: 4%;
+        }
+        .container {
+            border: 2px solid #000;
+            background-color: #f9f9f9;
+            padding: 20px;
+            display: inline-block;
+            justify-content: center;
+        }
+        table {
+            width: 100%;
+        }
+        td {
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div>
+            <table>
+                <tr>
+                    <td><p>1st Number:</p></td>
+                    <td><input type="number" class="num1" placeholder="Enter the number"></td>
+                </tr>
+                <tr>
+                    <td><p>2nd Number:</p></td>
+                    <td><input type="number" class="num2" placeholder="Enter the number"></td>
+                </tr>    
+            </table>
+        </div>
+        <div>
+            <input type="button" onclick="Multiply()" value="Multiply">
+            <input type="button" onclick="Divide()" value="Divide">
+        </div>
+        <p id="element"></p>
+        <p id="element2"></p>
+    </div>
+    
+
+    <script>
+        function Multiply() {
+            var num1 = document.getElementsByClassName('num1')[0].value;
+            var num2 = document.getElementsByClassName('num2')[0].value;
+            var multi = num1 * num2;
+            document.getElementById('element').textContent = 'The Multipication of the number is: ' + multi;
+        }
+
+        function Divide() {
+            var num1 = document.getElementsByClassName('num1')[0].value;
+            var num2 = document.getElementsByClassName('num2')[0].value;
+            var divi = num1 / num2;
+            document.getElementById('element2').textContent = 'The Division of the numbers is: ' + divi;
+        }
+    </script>
+</body>
+</html>

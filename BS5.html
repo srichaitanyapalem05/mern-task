@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 5</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <style>
+        .form-group {
+            display: flex;
+            align-items: center;
+        }
+        .form-group label {
+            flex: 1;
+            max-width: 200px;
+        }
+        .form-control-container {
+            flex: 2;
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+        .form-control-container i {
+            position: absolute;
+            left: 10px;
+        }
+        .form-control {
+            padding-left: 30px;
+        }
+        .container-box {
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+        }
+        .btn-send {
+            display: block;
+            width: 100%;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+<div class="container mt-5">
+    <div class="container-box">
+        <form id="registrationForm" novalidate>
+            <div class="form-group">
+                <label for="firstName">First Name</label>
+                <div class="form-control-container">
+                    <i class="fas fa-user"></i>
+                    <input type="text" class="form-control" id="firstName" placeholder="First Name" required>
+                    <div class="invalid-feedback">Please supply your first name</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="lastName">Last Name</label>
+                <div class="form-control-container">
+                    <i class="fas fa-user"></i>
+                    <input type="text" class="form-control" id="lastName" placeholder="Last Name" required>
+                    <div class="invalid-feedback">Please supply your last name</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <div class="form-control-container">
+                    <i class="fas fa-envelope"></i>
+                    <input type="email" class="form-control" id="email" placeholder="E-Mail Address" required>
+                    <div class="invalid-feedback">Please supply your email address</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone</label>
+                <div class="form-control-container">
+                    <i class="fas fa-phone"></i>
+                    <input type="tel" class="form-control" id="phone" placeholder="(845) 555-1212" required>
+                    <div class="invalid-feedback">Please supply your phone number</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="address">Address</label>
+                <div class="form-control-container">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <input type="text" class="form-control" id="address" placeholder="Address" required>
+                    <div class="invalid-feedback">Please supply your street address</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="city">City</label>
+                <div class="form-control-container">
+                    <i class="fas fa-city"></i>
+                    <input type="text" class="form-control" id="city" placeholder="City" required>
+                    <div class="invalid-feedback">Please supply your city</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="state">State</label>
+                <div class="form-control-container">
+                    <select class="form-control" id="state" required>
+                        <option value="" disabled selected>Select your state</option>
+                        <option>Andhra Pradesh</option>
+                        <option>Tamil Nadu</option>
+                        <option>Karnataka</option>
+                    </select>
+                    <div class="invalid-feedback">Please select your state</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Do you have hosting?</label><br>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="hosting" id="hostingYes" value="yes" required>
+                    <label class="form-check-label" for="hostingYes">Yes</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="hosting" id="hostingNo" value="no" required>
+                    <label class="form-check-label" for="hostingNo">No</label>
+                </div>
+                <div class="invalid-feedback d-block">Please indicate if you have hosting</div>
+            </div>
+            <div class="form-group">
+                <label for="projectDescription">Project Description</label>
+                <textarea class="form-control" id="projectDescription" rows="3" placeholder="Enter project description" required></textarea>
+                <div class="invalid-feedback">Please provide a project description</div>
+            </div>
+            <button type="submit" class="btn btn-primary btn-send">Send</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    function validateField(field) {
+        if (!field.checkValidity()) {
+            field.classList.add('is-invalid');
+            field.classList.remove('is-valid');
+        } else {
+            field.classList.add('is-valid');
+            field.classList.remove('is-invalid');
+        }
+    }
+
+    function initialValidation() {
+        const form = document.getElementById('registrationForm');
+        const inputs = form.querySelectorAll('input, select, textarea');
+
+        inputs.forEach(input => {
+            validateField(input);
+        });
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        initialValidation();
+
+        const form = document.getElementById('registrationForm');
+        const inputs = form.querySelectorAll('input, select, textarea');
+
+        inputs.forEach(input => {
+            input.addEventListener('input', () => validateField(input));
+            input.addEventListener('blur', () => validateField(input));
+        });
+
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            if (!form.checkValidity()) {
+                form.classList.add('was-validated');
+                return;
+            }
+
+            const firstName = document.getElementById('firstName').value;
+            const lastName = document.getElementById('lastName').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const address = document.getElementById('address').value;
+            const city = document.getElementById('city').value;
+            const state = document.getElementById('state').value;
+            const hosting = document.querySelector('input[name="hosting"]:checked').value;
+            const projectDescription = document.getElementById('projectDescription').value;
+
+            const url = `Task5.2.html?firstName=${encodeURIComponent(firstName)}&lastName=${encodeURIComponent(lastName)}&email=${encodeURIComponent(email)}&phone=${encodeURIComponent(phone)}&address=${encodeURIComponent(address)}&city=${encodeURIComponent(city)}&state=${encodeURIComponent(state)}&hosting=${encodeURIComponent(hosting)}&projectDescription=${encodeURIComponent(projectDescription)}`;
+
+            window.open(url, '_blank');
+        });
+    });
+</script>
+</body>
+</html>

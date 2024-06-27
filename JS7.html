@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>JS-TASK7</title>
+  <style>
+    #train {
+      position: relative;
+      width: 190px;
+      height: 100px;
+      background-image: url('./img3.jpg'); /* Make sure to replace 'train.png' with the path to your train image */
+      background-size: cover;
+    }
+    #buttons {
+         margin-left:100px ;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="train"></div>
+  <div>
+    <h1>Click The following button for the handling the animation</h1>
+  </div>
+  <div id="buttons" >
+    <button onclick="startAnimation()" style="margin:0px 10px 0px 10px;" >Start</button>
+    <button onclick="stopAnimation()" style="margin:0px 10px 0px 10px;"  >Stop</button>
+  </div>
+
+  <script >
+    let train = document.getElementById('train');
+    let animation;
+    
+    function startAnimation() {
+      let position = 0;
+      clearInterval(animation);
+      animation = setInterval(frame, 10);
+      function frame() {
+        if (position === window.innerWidth) {
+          position = -train.offsetWidth; 
+        } else {
+          position++;
+          train.style.left = position + 'px';
+        }
+      }
+    }
+    
+    function stopAnimation() {
+      clearInterval(animation);
+    }
+    
+    
+  </script>
+</body>
+</html>

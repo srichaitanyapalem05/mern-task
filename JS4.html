@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>JS-TASK4</title>
+    <style>
+        button
+        {
+            border-radius: 0;
+            width: 120px;
+            height: 5vh;
+        }
+        .container
+        {
+            margin: 40px 0px 0px  60px;
+        }
+    </style>
+     
+</head>
+<body>
+    <div class="container">
+        <button onclick="showDate()">show date</button>
+        <p id="dateDisplay"></p>
+        <br>
+        <br>
+        <button onclick="showTime()">show Time</button>
+        <p id="timeDisplay"></p>
+    </div>
+
+<script>
+   function showDate() {
+    var today = new Date();
+    var monthNames = ["January", "February", "March", "April", "May", "June", 
+                      "July", "August", "September", "October", "November", "December"];
+    var date = (today.getDate() < 10 ? '0' : '') + today.getDate() + '/' + monthNames[today.getMonth()] + '/' + today.getFullYear();
+    document.getElementById('dateDisplay').innerHTML = date;
+}
+
+function showTime() {
+    var today = new Date();
+    var options = { timeZone: 'Asia/Kolkata', timeZoneName: 'long', hour12: false };
+    var timeString = today.toLocaleString('en-US', options);
+
+  
+    var dayName = today.toDateString().split(' ')[0];
+    var monthName = today.toDateString().split(' ')[1];
+    var day = (today.getDate() < 10 ? '0' : '') + today.getDate();
+    var year = today.getFullYear();
+    var time = today.toTimeString().split(' ')[0];  
+    var timeZone = "GMT" + today.toTimeString().split(' ')[1].slice(3, 8);  
+    document.getElementById('timeDisplay').innerHTML = dayName+' '+monthName+' '+day+' '+year+' '+time+' '+timeZone+' '+'( India Standard Time) ';
+}
+
+
+
+
+</script>
+
+</body>
+</html>
